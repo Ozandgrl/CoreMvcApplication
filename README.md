@@ -1,0 +1,2 @@
+# CoreMvcApplication
+CoreProjesi

@@ -48,7 +48,7 @@ namespace CoreMVC2.Controllers
         // GET: Product/Create
         public IActionResult Create()
         {
-            ViewData["CatalogId"] = new SelectList(_context.Catalog, "Id", "Id");
+            ViewData["CatalogId"] = new SelectList(_context.Catalog, "Id", "Name");
             return View();
         }
 

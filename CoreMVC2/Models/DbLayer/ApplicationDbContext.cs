@@ -22,6 +22,7 @@ namespace CoreMVC2.Models.DbLayer
         public DbSet<New> New { get; set; }
         public DbSet<Reference> Reference { get; set; }
         public DbSet<RequestForm> RequestForm { get; set; }
+        public DbSet<Pages> Pages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()

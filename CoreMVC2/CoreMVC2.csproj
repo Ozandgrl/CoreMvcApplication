@@ -22,4 +22,9 @@
     <Folder Include="Models\DbLayer\Mapping\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Include="Content\Admin\vendor\jquery-idletimer\jquery-idletimer.sln" />
+  </ItemGroup>
+
 </Project>

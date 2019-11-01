@@ -23,6 +23,7 @@ namespace CoreMVC2.Admin.Models.DbLayer
         public DbSet<Reference> Reference { get; set; }
         public DbSet<RequestForm> RequestForm { get; set; }
         public DbSet<Pages> Pages { get; set; }
+        public DbSet<User> User { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()
@@ -30,6 +31,5 @@ namespace CoreMVC2.Admin.Models.DbLayer
             .WithMany(g => g.Products)
             .HasForeignKey(s => s.CatalogId);
         }
-        public DbSet<CoreMVC2.Admin.Models.Entities.User> User { get; set; }
     }
 }

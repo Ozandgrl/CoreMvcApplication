@@ -6,70 +6,113 @@
     //Layout = "~/Areas/Admin/Views/Shared/_LoginLayout.cshtml";
 }
 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Admin Panel Giriş</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
-<form asp-action="Index" method="post" asp-controller="Login">
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/Content/admin/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/admin/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/admin/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="~/Content/admin/vendor/bootstrap-datepicker/css/datepicker3.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/Content/admin/stylesheets/theme.css" />
 
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="#"><b><i class="fa fa-terminal" aria-hidden="true"></i> APK</b>Panel</a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">Web sayfanızı yönetmek için giriş yapın</p>
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <form name="form" novalidate="">
-                    <div class="form-group has-feedback">
-                        @Html.TextBoxFor(model => model.UserCode, new { title = "Kullanıcı Adı", placeholder = "Kullanıcı Adı", @class = "form-control" })
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="~/Content/admin/stylesheets/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/Content/admin/stylesheets/theme-custom.css">
+
+    <!-- Head Libs -->
+    <script src="~/Content/admin/vendor/modernizr/modernizr.js"></script>
+</head>
+<body>
+    <form asp-action="Index" method="post" asp-controller="Login">
+        <section class="body-sign">
+            <div class="center-sign">
+                <a href="/" class="logo pull-left">
+                    <img src="~/Content/admin/images/logo.png" height="54" alt="Porto Admin" />
+                </a>
+
+                <div class="panel panel-sign">
+                    <div class="panel-title-sign mt-xl text-right">
+                        <h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Giriş</h2>
                     </div>
-                    <div class="form-group has-feedback">
-                        @Html.PasswordFor(model => model.Password, new { title = "Parola", placeholder = "Parola", @class = "form-control" })
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <div class="panel-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <form name="form" novalidate="">
+                                <div class="form-group mb-lg">
+                                    <label>Kullanıcı Adı</label>
+                                    <div class="input-group input-group-icon">
+                                        @Html.TextBoxFor(model => model.UserCode, new { title = "Kullanıcı Adı", placeholder = "Kullanıcı Adı", @class = "form-control input-lg" })
+                                        <span class="input-group-addon">
+                                            <span class="icon icon-lg">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-lg">
+                                    <div class="clearfix">
+                                        <label class="pull-left">Şifre</label>
+                                        <a href="javascript:;" class="pull-right">Şifremi Unuttum</a>
+                                    </div>
+                                    <div class="input-group input-group-icon">
+                                        @Html.PasswordFor(model => model.Password, new { title = "Parola", placeholder = "Parola", @class = "form-control input-lg" })
+                                        <span class="input-group-addon">
+                                            <span class="icon icon-lg">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                @if (TempData["Alert"] == "true")
+                                {
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        @Html.ValidationSummary(false, "")
+                                    </div>
+                                }
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="checkbox-custom checkbox-default">
+                                            <input id="RememberMe" name="rememberme" type="checkbox" />
+                                            <label for="RememberMe">Beni Hatırla</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 text-right">
+                                        <button type="submit" class="btn btn-primary hidden-xs">Giriş</button>
+                                        <button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Giriş</button>
+                                    </div>
+                                </div>
+                            </form>
+                        }
                     </div>
-                    @if (TempData["Alert"] == "true")
-                    {
-                        <div class="alert alert-danger alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            @Html.ValidationSummary(false, "")
-                        </div>
-                    }
-                    <div class="row">
-                        <div class="col-xs-8">
-                            @*<div class="checkbox icheck">
-                                    <label>
-                                        <input type="checkbox"> Remember Me
-                                    </label>
-                                </div>*@
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
-            }
-            @*<div class="social-auth-links text-center">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
-                        <i class="fa fa-facebook"></i> Sign in using
-                        Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-social btn-google btn-flat">
-                        <i class="fa fa-google-plus"></i> Sign in using
-                        Google+
-                    </a>
-                </div>*@
-            <!-- /.social-auth-links -->
-            <a href="#">Şifremi unuttum</a><br>
-            @*<a href="register.html" class="text-center">Register a new membership</a>*@
-        </div>
-        <!-- /.login-box-body -->
-    </div>
+                </div>
+                <p class="text-center text-muted mt-md mb-md">Copyright 2018. All rights reserved. Template</p>
+            </div>
+        </section>
+    </form>
+    <script type="text/javascript" src="~/Content/admin/vendor/jquery/jquery.js"></script>
+    <script src="~/Content/admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="~/Content/admin/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/admin/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="~/Content/admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/admin/vendor/magnific-popup/magnific-popup.js"></script>
+    <script src="~/Content/admin/vendor/jquery-placeholder/jquery.placeholder.js"></script>
 
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/Content/admin/javascripts/theme.js"></script>
 
-</form>
+    <!-- Theme Custom -->
+    <script src="~/Content/admin/javascripts/theme.custom.js"></script>
 
-<!-- /.login-box -->
+    <!-- Theme Initialization Files -->
+    <script src="~/Content/admin/javascripts/theme.init.js"></script>
+</body>
+</html>

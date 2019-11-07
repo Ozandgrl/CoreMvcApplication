@@ -30,7 +30,7 @@ namespace CoreMVC2
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=DenemeDB;Trusted_Connection=true";
+            var connection = @"Server=(localdb)\MSSQLLocalDB;Database=DenemeDB;Trusted_Connection=true";
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
         }
 
